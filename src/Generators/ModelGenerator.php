@@ -157,7 +157,7 @@ class ModelGenerator extends BaseGenerator
         foreach ($this->commandData->inputFields as $field) {
             if (!empty($field['validations'])) {
                 if (str_contains($field['validations'], 'required')) {
-                    $requiredFields[] = $field['fieldName'];
+                    $requiredFields[] = '"' . $field['fieldName'] . '"'; // AWARE-ALTERATION
                 }
             }
         }

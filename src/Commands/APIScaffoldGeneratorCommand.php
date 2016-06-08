@@ -53,11 +53,12 @@ class APIScaffoldGeneratorCommand extends BaseCommand
     {
         parent::handle();
 
+/* AWARE-ALTERATION
         if (!$this->commandData->getOption('fromTable')) {
             $migrationGenerator = new MigrationGenerator($this->commandData);
             $migrationGenerator->generate();
         }
-
+*/
         $modelGenerator = new ModelGenerator($this->commandData);
         $modelGenerator->generate();
 
@@ -101,7 +102,7 @@ class APIScaffoldGeneratorCommand extends BaseCommand
             $menuGenerator->generate();
         }
 
-        $this->performPostActionsWithMigration();
+        $this->performPostActions(false); // AWARE-ALTERATION
     }
 
     /**
