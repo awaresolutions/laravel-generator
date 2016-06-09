@@ -19,6 +19,7 @@ use InfyOm\Generator\Commands\Scaffold\ControllerGeneratorCommand;
 use InfyOm\Generator\Commands\Scaffold\RequestsGeneratorCommand;
 use InfyOm\Generator\Commands\Scaffold\ScaffoldGeneratorCommand;
 use InfyOm\Generator\Commands\Scaffold\ViewsGeneratorCommand;
+use InfyOm\Generator\Commands\AwareGeneratorCommand;
 
 class InfyOmGeneratorServiceProvider extends ServiceProvider
 {
@@ -107,6 +108,10 @@ class InfyOmGeneratorServiceProvider extends ServiceProvider
             return new RollbackGeneratorCommand();
         });
 
+        $this->app->singleton('infyom.aware', function ($app) {
+            return new AwareGeneratorCommand();
+        });
+
         $this->commands([
             'infyom.publish',
             'infyom.api',
@@ -124,6 +129,7 @@ class InfyOmGeneratorServiceProvider extends ServiceProvider
             'infyom.scaffold.requests',
             'infyom.scaffold.views',
             'infyom.rollback',
+            'infyom.aware',
         ]);
     }
 }
