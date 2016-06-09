@@ -63,7 +63,7 @@ class RequestGenerator extends BaseGenerator
         $this->commandData->commandInfo($this->updateFileName);
     }
 
-    private function generateCreateRequest()
+    private function generateRequest()
     {
         $templateData = TemplateUtil::getTemplate('request', 'laravel-generator');
 
