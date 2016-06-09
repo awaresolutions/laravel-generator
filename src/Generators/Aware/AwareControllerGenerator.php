@@ -21,7 +21,7 @@ class AwareControllerGenerator extends BaseGenerator
     public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = $commandData->config->pathApiController;
+        $this->path = $commandData->config->pathController;
         $this->fileName = $this->commandData->modelName.'Controller.php';
     }
 
@@ -44,11 +44,11 @@ class AwareControllerGenerator extends BaseGenerator
         $methods = ['controller', 'index', 'store', 'show', 'update', 'destroy'];
 
         if ($this->commandData->getAddOn('swagger')) {
-            $templatePrefix = 'controller';
+            $templatePrefix = 'swagger.controller';
             $templateType = 'swagger-generator';
         } else {
-            $templatePrefix = 'api.docs.controller';
-            $templateType = 'laravel-generator';
+            // we should never hit this...
+            dd($this);
         }
 
         foreach ($methods as $method) {

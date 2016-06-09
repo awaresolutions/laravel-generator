@@ -2,8 +2,9 @@
 
 namespace InfyOm\Generator\Commands;
 
+use InfyOm\Generator\Commands\BaseCommand;
 use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Generators\ModelGenerator;
+use InfyOm\Generator\Generators\Aware\AwareModelGenerator;
 use InfyOm\Generator\Generators\RepositoryGenerator;
 use InfyOm\Generator\Generators\Aware\AwareRequestGenerator;
 use InfyOm\Generator\Generators\Aware\AwareControllerGenerator;
@@ -72,7 +73,7 @@ class AwareGeneratorCommand extends BaseCommand
     {
         parent::handle();
 
-        $modelGenerator = new ModelGenerator($this->commandData);
+        $modelGenerator = new AwareModelGenerator($this->commandData);
         $modelGenerator->generate();
 
         $repositoryGenerator = new RepositoryGenerator($this->commandData);
