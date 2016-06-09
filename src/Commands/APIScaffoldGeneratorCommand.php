@@ -65,8 +65,10 @@ class APIScaffoldGeneratorCommand extends BaseCommand
         $repositoryGenerator = new RepositoryGenerator($this->commandData);
         $repositoryGenerator->generate();
 
+/*
         $requestGenerator = new APIRequestGenerator($this->commandData);
         $requestGenerator->generate();
+*/
 
         $controllerGenerator = new APIControllerGenerator($this->commandData);
         $controllerGenerator->generate();

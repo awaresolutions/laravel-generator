@@ -21,18 +21,22 @@ class RequestGenerator extends BaseGenerator
     /** @var string */
     private $updateFileName;
 
+    private $fileName;
+
     public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
         $this->path = $commandData->config->pathRequest;
         $this->createFileName = 'Create'.$this->commandData->modelName.'Request.php';
         $this->updateFileName = 'Update'.$this->commandData->modelName.'Request.php';
+        $this->fileName = $this->commandData->modelName.'Request.php';
     }
 
     public function generate()
     {
-        $this->generateCreateRequest();
-        $this->generateUpdateRequest();
+        // $this->generateCreateRequest();
+        // $this->generateUpdateRequest();
+        $this->generateRequest();
     }
 
     private function generateCreateRequest()
@@ -57,6 +61,18 @@ class RequestGenerator extends BaseGenerator
 
         $this->commandData->commandComment("\nUpdate Request created: ");
         $this->commandData->commandInfo($this->updateFileName);
+    }
+
+    private function generateCreateRequest()
+    {
+        $templateData = TemplateUtil::getTemplate('request', 'laravel-generator');
+
+        $templateData = TemplateUtil::fillTemplate($this->commandData->dynamicVars, $templateData);
+
+        FileUtil::createFile($this->path, $this->fileName, $templateData);
+
+        $this->commandData->commandComment("\nRequest created: ");
+        $this->commandData->commandInfo($this->fileName);
     }
 
     public function rollback()
